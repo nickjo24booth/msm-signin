@@ -68,7 +68,7 @@
         Director
       </dt>
       <dd>
-        <%= @the_movie.director_id %>
+        <%= @the_movie.director.name %>
       </dd>
 
       <dt>
@@ -82,29 +82,35 @@
         Image
       </dt>
       <dd>
-        <%= @the_movie.image %>
+        <img src="<%= @the_movie.image %>">
       </dd>
 
       <dt>
-        Created at
+        Cast
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_movie.created_at) %> ago
+        <ul>
+        <%@the_movie.cast.each do |actor| %>
+
+          <li>
+            <a href="/actors/<%=actor.id%>">
+              <%=actor.name%>
+            </a>
+            <%character = Character.where({:movie_id => @the_movie.id}).where({:actor_id => actor.id}).at(0)%>
+            (<%=character.name%>)
+          </li>
+          <%end%>
+        </ul>
       </dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_movie.updated_at) %> ago
-      </dd>
+      
     </dl>
   </div>
 </div>
 
 <hr>
 
-
+<%if session.fetch(:user_id) != nil%>
 <div>
   <div>
     <h2>
@@ -166,5 +172,5 @@
     </form>
   </div>
 </div>
-
+<%end%>
 <hr>

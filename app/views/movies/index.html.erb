@@ -85,9 +85,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Title
@@ -118,18 +115,11 @@
         </th>
 
         <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_movies.each do |a_movie| %>
       <tr>
-        <td>
-          <%= a_movie.id %>
-        </td>
 
         <td>
           <%= a_movie.title %>
@@ -144,7 +134,7 @@
         </td>
 
         <td>
-          <%= a_movie.director_id %>
+          <%= a_movie.director.name %>
         </td>
 
         <td>
@@ -152,14 +142,11 @@
         </td>
 
         <td>
-          <%= a_movie.image %>
+         <img src = "<%= a_movie.image %>" >
         </td>
 
         <td>
           <%= time_ago_in_words(a_movie.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_movie.updated_at) %> ago
         </td>
 
         <td>
